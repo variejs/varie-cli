@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 
+const promisify = require("util.promisify");
 const fs = require("fs-extra");
 const ora = require("ora");
 const chalk = require("chalk");
 const program = require("commander");
 const downloadGitRepo = require("download-git-repo");
+const exec = promisify(require("child_process").exec);
 
 program
   .version(require("../package").version)
@@ -34,21 +36,37 @@ program
         if (program.dev) {
           console.info("we should install dev");
         }
-        const spinner = ora("Creating new project");
-        spinner.start();
+
+        const spinner = ora();
+        spinner.start(`Creating ${projectName}`);
+
         downloadGitRepo(
           `variejs/varie${typeof branch === "string" ? `#${branch}` : ""}`,
           projectDirectory,
           function(err) {
-            spinner.stop();
             if (err) {
-              console.error("Failed to download varie : " + err.message.trim());
+              spinner.fail("Failed to download varie : " + err.message.trim());
+            } else {
+              spinner.succeed(`Created ${projectName}`);
+              spinner.start("Running npm install.");
+              exec(`cd ${projectDirectory} && npm install`).then(
+                () => {
+                  spinner.succeed(`NPM modules installed.`);
+                  spinner.start("Building Project.");
+                  exec(`cd ${projectDirectory} && npm run dev`).then(
+                    () => {
+                      spinner.succeed("Project Built, and ready to develop!");
+                    },
+                    err => {
+                      spinner.fail(err);
+                    }
+                  );
+                },
+                err => {
+                  spinner.fail(err);
+                }
+              );
             }
-            console.log(
-              err
-                ? "Error"
-                : "Created new project, please run yarn/npm install to start development."
-            );
           }
         );
       } else {
