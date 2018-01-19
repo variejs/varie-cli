@@ -1,13 +1,13 @@
 {
   "name": "varie-cli",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "description": "A CLI for scaffolding Varie projects.",
   "preferGlobal": true,
   "bin": {
     "varie": "bin/varie"
   },
   "scripts": {
-    "pretty": "prettier --write './**/*.*js'"
+    "pretty": "prettier --write './**/*.*(js|ts|vue)'"
   },
   "repository": "git@github.com:variejs/varie-cli.git",
   "author": "Luke Policinski <luke@lukepolo.com>",
