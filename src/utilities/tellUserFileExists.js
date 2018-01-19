@@ -1,7 +1,7 @@
 const chalk = require("chalk");
 const fs = require("fs-extra");
 
-async function tellUserFileExists(path, type = "file", force) {
+function tellUserFileExists(path, type = "file", force) {
   return new Promise(resolve => {
     if (force) {
       return resolve(true);
