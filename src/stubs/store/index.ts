@@ -4,7 +4,7 @@ import * as getters from "./getters";
 import * as mutations from "./mutations";
 
 export default {
-  name: "{{storeName}}",
+  name: "temp",
   state,
   actions,
   getters,

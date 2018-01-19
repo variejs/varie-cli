@@ -1,8 +1,8 @@
 import { ActionContext } from "vuex";
 import RootState from "@store/rootState";
-import { StoreState } from "./stateInterface";
+import { tempState } from "./stateInterface";
 
 export const action = (
-  context: ActionContext<StoreState, RootState>,
+  context: ActionContext<tempState, RootState>,
   data
 ) => {};

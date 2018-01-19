@@ -7,5 +7,7 @@
 <script>
 import Vue from "Vue";
 
-export default Vue.extend({});
+export default Vue.extend({
+  //
+});
 </script>

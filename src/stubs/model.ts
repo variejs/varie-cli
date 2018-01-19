@@ -1,12 +1,5 @@
-const fs = require("fs-extra");
+import Model from "varie/lib/support/Model";
 
-module.exports = function makeComponent(componentName) {
-  try {
-    fs.copySync(
-      `${__dirname}/../stubs/component.stub`,
-      `./components/${componentName}.vue`
-    );
-  } catch (err) {
-    console.error(err);
-  }
-};
+export default class tempModel extends Model {
+  //
+}

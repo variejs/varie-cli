@@ -1,1 +1,1 @@
-export interface StoreState {}
+export interface tempState {}

@@ -57,6 +57,10 @@ buffer@^3.0.1:
     ieee754 "^1.1.4"
     isarray "^1.0.0"
 
+camelcase@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-4.1.0.tgz#d545635be1e33c542649c69173e5de6acfae34dd"
+
 capture-stack-trace@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/capture-stack-trace/-/capture-stack-trace-1.0.0.tgz#4a6fa07399c26bba47f0b2496b4d0fb408c5550d"
@@ -758,6 +762,22 @@ tmp@^0.0.33:
   resolved "https://registry.yarnpkg.com/tmp/-/tmp-0.0.33.tgz#6d34335889768d21b2bcda0aa277ced3b1bfadf9"
   dependencies:
     os-tmpdir "~1.0.2"
+
+to-no-case@^1.0.0:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/to-no-case/-/to-no-case-1.0.2.tgz#c722907164ef6b178132c8e69930212d1b4aa16a"
+
+to-pascal-case@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/to-pascal-case/-/to-pascal-case-1.0.0.tgz#0bbdc8df448886ba01535e543327048d0aa1ce78"
+  dependencies:
+    to-space-case "^1.0.0"
+
+to-space-case@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/to-space-case/-/to-space-case-1.0.0.tgz#b052daafb1b2b29dc770cea0163e5ec0ebc9fc17"
+  dependencies:
+    to-no-case "^1.0.0"
 
 trim-repeated@^1.0.0:
   version "1.0.0"
