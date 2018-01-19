@@ -2,19 +2,19 @@
 
 A simple CLI for building Varie projects
 
-``` bash
+```bash
 $ npm install -g varie-cli
 ```
 
 ### Usage
 
-``` bash
+```bash
 $ varie new <project-name>
 ```
 
 Example:
 
-``` bash
+```bash
 $ varie new my-project
 ```
 
