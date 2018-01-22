@@ -1,3 +1,4 @@
+const makeRule = require("./makeRule");
 const makeMixin = require("./makeMixin");
 const makeModel = require("./makeModel");
 const makeStore = require("./makeStore");
@@ -9,6 +10,7 @@ const makeDirective = require("./makeDirective");
 const makeRouteMiddleware = require("./makeRouteMiddleware");
 
 module.exports = {
+	makeRule,
   makeMixin,
   makeModel,
   makeStore,

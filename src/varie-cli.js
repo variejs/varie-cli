@@ -73,4 +73,13 @@ program
     commands.makeRouteMiddleware(routeMiddlewareName, program.force);
   });
 
+program
+	.command("make:rule")
+	.description(
+		"Crates a rule in the rule directory"
+	)
+	.action(function(ruleName) {
+		commands.makeRule(ruleName, program.force);
+	});
+
 program.parse(process.argv);
