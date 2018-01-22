@@ -1,10 +1,9 @@
 const fs = require("fs-extra");
-const snakeCase = require('snake-case');
+const snakeCase = require("snake-case");
 const tellUserFileExists = require("./../utilities/tellUserFileExists");
 
 module.exports = function makeRule(ruleName, force) {
-
-	ruleName = snakeCase(ruleName);
+  ruleName = snakeCase(ruleName);
 
   let path = `./app/rules/${ruleName}.ts`;
   tellUserFileExists(path, "rule", force).then(() => {
