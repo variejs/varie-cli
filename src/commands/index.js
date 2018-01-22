@@ -10,7 +10,7 @@ const makeDirective = require("./makeDirective");
 const makeRouteMiddleware = require("./makeRouteMiddleware");
 
 module.exports = {
-	makeRule,
+  makeRule,
   makeMixin,
   makeModel,
   makeStore,
