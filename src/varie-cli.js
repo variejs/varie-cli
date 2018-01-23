@@ -67,6 +67,13 @@ program
   });
 
 program
+  .command("make:app-middleware")
+  .description("Creates a new app middleware")
+  .action(function(appMiddlewareName) {
+    commands.makeAppMiddleware(appMiddlewareName, program.force);
+  });
+
+program
   .command("make:route-middleware")
   .description("Creates a new route middleware")
   .action(function(routeMiddlewareName) {
@@ -74,12 +81,10 @@ program
   });
 
 program
-	.command("make:rule")
-	.description(
-		"Crates a rule in the rule directory"
-	)
-	.action(function(ruleName) {
-		commands.makeRule(ruleName, program.force);
-	});
+  .command("make:rule")
+  .description("Crates a rule in the rule directory")
+  .action(function(ruleName) {
+    commands.makeRule(ruleName, program.force);
+  });
 
 program.parse(process.argv);

@@ -7,10 +7,11 @@ const newProject = require("./newProject");
 const makeProvider = require("./makeProvider");
 const makeComponent = require("./makeComponent");
 const makeDirective = require("./makeDirective");
+const makeAppMiddleware = require("./makeAppMiddleware");
 const makeRouteMiddleware = require("./makeRouteMiddleware");
 
 module.exports = {
-	makeRule,
+  makeRule,
   makeMixin,
   makeModel,
   makeStore,
@@ -19,5 +20,6 @@ module.exports = {
   makeProvider,
   makeComponent,
   makeDirective,
+  makeAppMiddleware,
   makeRouteMiddleware
 };
