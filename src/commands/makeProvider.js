@@ -5,8 +5,8 @@ const tellUserFileExists = require("./../utilities/tellUserFileExists");
 
 module.exports = function makeProvider(providerName, force) {
   let path = `./app/providers/${providerName}Provider.ts`;
-  tellUserFileExists(path, "provider", force).then((valid) => {
-    if(valid) {
+  tellUserFileExists(path, "provider", force).then(valid => {
+    if (valid) {
       try {
         fs.copySync(`${__dirname}/../stubs/provider.ts`, path);
         replaceTextInFile(path, "temp", toPascalCase(providerName));
