@@ -1,6 +1,6 @@
 {
   "name": "varie-cli",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "A CLI for scaffolding Varie projects.",
   "preferGlobal": true,
   "bin": {
