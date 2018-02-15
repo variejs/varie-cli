@@ -5,7 +5,7 @@ const tellUserFileExists = require("./../utilities/tellUserFileExists");
 
 module.exports = function makeDirective(directiveName, force) {
   let path = `./app/directive/${directiveName}.ts`;
-  tellUserFileExists(path, "directive", force).then(() => {
+  tellUserFileExists(path, "directives", force).then(() => {
     try {
       fs.copySync(`${__dirname}/../stubs/directive.ts`, path);
       replaceTextInFile(path, "temp", camelCase(directiveName));
