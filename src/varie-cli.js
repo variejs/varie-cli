@@ -1,51 +1,52 @@
 const program = require("commander");
 const commands = require("./commands");
+const Matcher = require('did-you-mean');
 
 program
-  // TODO - these options should exist on a command
-  .option("--dev", 'Installs the latest "development" release')
-  .option("--force", "Forces install even if the directory already exists")
+  .option("--force", "Forces a command")
   .version(require("../package").version)
-  .usage("<command> [options]");
+  .usage("<command> [options]")
+
 
 program
   .command("new")
-  .description("run remote setup commands")
+  .description("Creates a new varie instance")
+  .option("--dev", 'Installs the latest "development" release')
   .action(function(projectName, branch = "master") {
     commands.newProject(projectName, branch, program.force);
   });
 
 program
   .command("make:component")
-  .description("makes a Vue directive in the component directory")
+  .description("Creates a Vue directive in the component directory")
   .action(function(componentName) {
     commands.makeComponent(componentName, program.force);
   });
 
 program
   .command("make:directive")
-  .description("Makes a Vue directive in the directive directory")
+  .description("Creates a Vue directive in the directive directory")
   .action(function(directiveName) {
     commands.makeDirective(directiveName, program.force);
   });
 
 program
   .command("make:filter")
-  .description("Makes a Vue filter in the filters directory")
+  .description("Creates a Vue filter in the filters directory")
   .action(function(filterName) {
     commands.makeFilter(filterName, program.force);
   });
 
 program
   .command("make:mixin")
-  .description("Makes a Vue mixin in the mixins directory")
+  .description("Creates a Vue mixin in the mixins directory")
   .action(function(mixinName) {
     commands.makeMixin(mixinName, program.force);
   });
 
 program
   .command("make:model")
-  .description("Makes a model in the model directory")
+  .description("Creates a model in the model directory")
   .action(function(modelName) {
     commands.makeModel(modelName, program.force);
   });
@@ -87,4 +88,44 @@ program
     commands.makeRule(ruleName, program.force);
   });
 
+
+program
+  .command('*')
+  .action(function(command) {
+    let matcher = new Matcher();
+    matcher.setThreshold(4);
+    if(command.includes('make')) {
+      matcher.add(
+        'make:component',
+        'make:directive',
+        'make:directive',
+        'make:filter',
+        'make:mixin',
+        'make:model',
+        'make:provider',
+        'make:store',
+        'make:app-middleware',
+        'make:route-middleware',
+        'make:rule',
+        'new',
+      );
+    }
+
+    let matches = matcher.list(command);
+    if(matches.length) {
+      console.error(`Did you mean one of these?`);
+      console.error("");
+      matches.forEach((match) => {
+        console.error(match.value)
+      })
+      console.error("");
+      return;
+    }
+    console.error("NOPE");
+  })
+
 program.parse(process.argv);
+
+if (!process.argv.slice(2).length) {
+  program.outputHelp();
+}
