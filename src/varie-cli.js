@@ -1,12 +1,11 @@
 const program = require("commander");
 const commands = require("./commands");
-const Matcher = require('did-you-mean');
+const Matcher = require("did-you-mean");
 
 program
   .option("--force", "Forces a command")
   .version(require("../package").version)
-  .usage("<command> [options]")
-
+  .usage("<command> [options]");
 
 program
   .command("new")
@@ -88,41 +87,38 @@ program
     commands.makeRule(ruleName, program.force);
   });
 
+program.command("*").action(function(command) {
+  let matcher = new Matcher();
+  matcher.setThreshold(4);
+  if (command.includes("make")) {
+    matcher.add(
+      "make:component",
+      "make:directive",
+      "make:directive",
+      "make:filter",
+      "make:mixin",
+      "make:model",
+      "make:provider",
+      "make:store",
+      "make:app-middleware",
+      "make:route-middleware",
+      "make:rule",
+      "new"
+    );
+  }
 
-program
-  .command('*')
-  .action(function(command) {
-    let matcher = new Matcher();
-    matcher.setThreshold(4);
-    if(command.includes('make')) {
-      matcher.add(
-        'make:component',
-        'make:directive',
-        'make:directive',
-        'make:filter',
-        'make:mixin',
-        'make:model',
-        'make:provider',
-        'make:store',
-        'make:app-middleware',
-        'make:route-middleware',
-        'make:rule',
-        'new',
-      );
-    }
-
-    let matches = matcher.list(command);
-    if(matches.length) {
-      console.error(`Did you mean one of these?`);
-      console.error("");
-      matches.forEach((match) => {
-        console.error(match.value)
-      })
-      console.error("");
-      return;
-    }
-    console.error("NOPE");
-  })
+  let matches = matcher.list(command);
+  if (matches.length) {
+    console.error(`Did you mean one of these?`);
+    console.error("");
+    matches.forEach(match => {
+      console.error(match.value);
+    });
+    console.error("");
+    return;
+  }
+  console.error("NOPE");
+});
 
 program.parse(process.argv);
 
