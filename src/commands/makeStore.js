@@ -8,8 +8,8 @@ module.exports = function makeStore(storePath, force) {
   let storeName = splitStore.pop();
   let fullPath = `./app/store/${storePath.split("/").join("/modules/")}`;
 
-  tellUserFolderExists(fullPath, "store", force).then((valid) => {
-    if(valid) {
+  tellUserFolderExists(fullPath, "store", force).then(valid => {
+    if (valid) {
       try {
         fs.copySync(`${__dirname}/../stubs/store`, fullPath);
 
@@ -23,13 +23,21 @@ module.exports = function makeStore(storePath, force) {
           "temp",
           toPascalCase(storeName)
         );
-        replaceTextInFile(`${fullPath}/index.ts`, "temp", toPascalCase(storeName));
+        replaceTextInFile(
+          `${fullPath}/index.ts`,
+          "temp",
+          toPascalCase(storeName)
+        );
         replaceTextInFile(
           `${fullPath}/mutations.ts`,
           "temp",
           toPascalCase(storeName)
         );
-        replaceTextInFile(`${fullPath}/state.ts`, "temp", toPascalCase(storeName));
+        replaceTextInFile(
+          `${fullPath}/state.ts`,
+          "temp",
+          toPascalCase(storeName)
+        );
         replaceTextInFile(
           `${fullPath}/stateInterface.ts`,
           "temp",
@@ -40,7 +48,5 @@ module.exports = function makeStore(storePath, force) {
         console.error(err);
       }
     }
-
-
   });
 };
