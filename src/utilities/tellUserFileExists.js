@@ -13,9 +13,9 @@ function tellUserFileExists(path, type = "file", force) {
             `This ${type} already exists. You can use --force to overwrite`
           )
         );
-        resolve(true);
+        resolve(false);
       }
-      resolve(false);
+      resolve(true);
     });
   });
 }

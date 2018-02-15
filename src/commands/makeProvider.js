@@ -5,12 +5,15 @@ const tellUserFileExists = require("./../utilities/tellUserFileExists");
 
 module.exports = function makeProvider(providerName, force) {
   let path = `./app/providers/${providerName}Provider.ts`;
-  tellUserFileExists(path, "provider", force).then(() => {
-    try {
-      fs.copySync(`${__dirname}/../stubs/provider.ts`, path);
-      replaceTextInFile(path, "temp", toPascalCase(providerName));
-    } catch (err) {
-      console.error(err);
+  tellUserFileExists(path, "provider", force).then((valid) => {
+    if(valid) {
+      try {
+        fs.copySync(`${__dirname}/../stubs/provider.ts`, path);
+        replaceTextInFile(path, "temp", toPascalCase(providerName));
+        console.info(`Provider created: ${path}`);
+      } catch (err) {
+        console.error(err);
+      }
     }
   });
 };

@@ -13,10 +13,10 @@ function tellUserFolderExists(path, type = "folder", force) {
             `This ${type} already exists. You can use --force to overwrite`
           )
         );
-        resolve(true);
+        resolve(false);
         process.exit();
       }
-      resolve(false);
+      resolve(true);
     });
   });
 }
