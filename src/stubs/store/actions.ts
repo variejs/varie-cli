@@ -3,7 +3,7 @@ import RootState from "@store/rootState";
 import { tempState } from "./stateInterface";
 import HttpServiceInterface from "varie/lib/http/HttpServiceInterface";
 
-const $http : HttpServiceInterface = $app.make('$http');
+const $http: HttpServiceInterface = $app.make("$http");
 
 export const action = (
   context: ActionContext<tempState, RootState>,

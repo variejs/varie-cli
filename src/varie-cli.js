@@ -60,7 +60,7 @@ program
 program
   .command("make:store")
   .description(
-    "Crates a Vuex store / submodule in the store directory based on the path provided"
+    "Creates a Vuex store / submodule in the store directory based on the path provided"
   )
   .action(function(storeName) {
     commands.makeStore(storeName, program.force);
@@ -82,9 +82,16 @@ program
 
 program
   .command("make:rule")
-  .description("Crates a rule in the rule directory")
+  .description("Creates a rule in the rule directory")
   .action(function(ruleName) {
     commands.makeRule(ruleName, program.force);
+  });
+
+program
+  .command("make:validator")
+  .description("Creates a validator in the validators directory")
+  .action(function(validatorName) {
+    commands.makeValidator(validatorName, program.force);
   });
 
 program.command("*").action(function(command) {
@@ -103,6 +110,7 @@ program.command("*").action(function(command) {
       "make:app-middleware",
       "make:route-middleware",
       "make:rule",
+      "make:validator",
       "new"
     );
   }
@@ -117,7 +125,6 @@ program.command("*").action(function(command) {
     console.error("");
     return;
   }
-  console.error("NOPE");
 });
 
 program.parse(process.argv);
