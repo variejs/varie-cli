@@ -1,7 +1,7 @@
 import state from "./state";
-import actions from "./actions";
-import getters from "./getters";
-import mutations from "./mutations";
+import Actions from "./actions";
+import Getters from "./getters";
+import Mutations from "./mutations";
 import { injectable } from "inversify";
 
 @injectable()
@@ -17,8 +17,8 @@ export default class temp {
     this.name = "temp";
     this.state = state;
     this.namespaced = true;
-    this.actions = new actions();
-    this.getters = new getters();
-    this.mutations = new mutations();
+    this.actions = new Actions();
+    this.getters = new Getters();
+    this.mutations = new Mutations();
   }
 }
