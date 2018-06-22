@@ -1,8 +1,8 @@
 import state from "./state";
 import actions from "./actions";
-import * as getters from "./getters";
-import { injectable, inject } from "inversify";
-import * as mutations from "./mutations";
+import getters from "./getters";
+import mutations from "./mutations";
+import { injectable } from "inversify";
 
 @injectable()
 export default class temp {
@@ -13,12 +13,12 @@ export default class temp {
   public mutations;
   public namespaced;
 
-  constructor(@inject("$http") $http) {
+  constructor() {
     this.name = "temp";
     this.state = state;
-    this.actions = new actions();
-    this.getters = new getters.default();
-    this.mutations = new mutations.default();
     this.namespaced = true;
+    this.actions = new actions();
+    this.getters = new getters();
+    this.mutations = new mutations();
   }
 }
