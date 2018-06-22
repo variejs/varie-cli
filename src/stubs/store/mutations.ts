@@ -1,3 +1,7 @@
 import { tempState } from "./stateInterface";
 
-export const mutation = (state: tempState, data) => {};
+export default class Mutations {
+  SAMPLE_MUTATION = (state: tempState, data) => {
+
+  };
+}

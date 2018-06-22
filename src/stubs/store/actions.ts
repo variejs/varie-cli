@@ -1,11 +1,15 @@
 import { ActionContext } from "vuex";
 import RootState from "@store/rootState";
 import { tempState } from "./stateInterface";
+import getDecorators from "inversify-inject-decorators";
 import HttpServiceInterface from "varie/lib/http/HttpServiceInterface";
 
-const $http: HttpServiceInterface = $app.make("$http");
+const { lazyInject } = getDecorators($app.$container);
 
-export const action = (
-  context: ActionContext<tempState, RootState>,
-  data
-) => {};
+export default class Actions {
+  @lazyInject("$http") private $http: HttpServiceInterface;
+
+  sampleTest = (context: ActionContext<tempState, RootState>, data) => {
+
+  };
+}
