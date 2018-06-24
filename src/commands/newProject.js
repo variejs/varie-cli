@@ -21,8 +21,6 @@ module.exports = function makeProject(projectName, branch, force = false) {
           if (err) {
             spinner.fail("Failed to download varie : " + err.message.trim());
           } else {
-            exec(`cd ${projectDirectory} && cp .env.example .env`);
-
             spinner.succeed(`Created ${projectName}`);
             spinner.start("Running npm install.");
 
