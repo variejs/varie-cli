@@ -101,7 +101,6 @@ program.command("*").action(function(command) {
     matcher.add(
       "make:component",
       "make:directive",
-      "make:directive",
       "make:filter",
       "make:mixin",
       "make:model",
