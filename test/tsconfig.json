@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "outDir": "./public/",
+    "module": "ES6",
+    "moduleResolution": "Node",
+    "baseUrl": "",
+    "target": "ES5",
+    "lib": ["ES6", "dom"],
+    "types": ["vue", "vuex", "vue-router", "webpack-env", "reflect-metadata"],
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "paths": {
+      "@app": ["app"],
+      "@app/*": ["app/*"],
+
+      "@config": ["config"],
+      "@config/*": ["config/*"],
+
+      "@store": ["app/store"],
+      "@store/*": ["app/store/*"],
+
+      "@models": ["app/models"],
+      "@models/*": ["app/models/*"],
+
+      "@routes": ["routes"],
+      "@routes/*": ["routes/*"],
+
+      "@resources": ["resources"],
+      "@resources/*": ["resources/*"],
+
+      "@views": ["resources/views"],
+      "@views/*": ["resources/views/*"],
+
+      "@components": ["app/components"],
+      "@components/*": ["app/components/*"]
+    }
+  },
+  "include": ["./**/*.ts"]
+}

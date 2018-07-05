@@ -2,8 +2,7 @@ const ora = require("ora");
 const exec = require("./../utilities/exec");
 const downloadGitRepo = require("download-git-repo");
 const tellUserFolderExists = require("./../utilities/tellUserFolderExists");
-const loadNvm =
-  'export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \\. "$NVM_DIR/nvm.sh" &&';
+const loadNvm = 'export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \\. "$NVM_DIR/nvm.sh" && nvm use ';
 
 module.exports = function makeProject(projectName, branch, force = false) {
   let projectDirectory = `${process.cwd()}/${projectName}`;
@@ -21,18 +20,20 @@ module.exports = function makeProject(projectName, branch, force = false) {
           if (err) {
             spinner.fail("Failed to download varie : " + err.message.trim());
           } else {
+            exec(`cd ${projectDirectory} && cp .env.example .env`);
+
             spinner.succeed(`Created ${projectName}`);
             spinner.start("Running npm install.");
 
             exec(
-              `cd ${projectDirectory} && ${loadNvm} nvm use && npm install`
+              `cd ${projectDirectory} && ${loadNvm} && npm install`
             ).then(
               () => {
                 spinner.succeed(`NPM modules installed.`);
                 spinner.start("Building Project.");
                 exec(
                   `cd ${projectDirectory} && ${
-                    hasNvm ? `${loadNvm} nvm use &&` : ""
+                    hasNvm ? `${loadNvm} &&` : ""
                   } npm run dev`
                 ).then(
                   () => {
