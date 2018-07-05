@@ -9,7 +9,5 @@ const { lazyInject } = getDecorators($app.$container);
 export default class Actions {
   @lazyInject("$http") private $http: HttpServiceInterface;
 
-  sampleTest = (context: ActionContext<tempState, RootState>, data) => {
-
-  };
+  sampleTest = (context: ActionContext<tempState, RootState>, data) => {};
 }

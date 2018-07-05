@@ -2,7 +2,8 @@ const ora = require("ora");
 const exec = require("./../utilities/exec");
 const downloadGitRepo = require("download-git-repo");
 const tellUserFolderExists = require("./../utilities/tellUserFolderExists");
-const loadNvm = 'export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \\. "$NVM_DIR/nvm.sh" && nvm use ';
+const loadNvm =
+  'export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \\. "$NVM_DIR/nvm.sh" && nvm use ';
 
 module.exports = function makeProject(projectName, branch, force = false) {
   let projectDirectory = `${process.cwd()}/${projectName}`;
@@ -26,7 +27,9 @@ module.exports = function makeProject(projectName, branch, force = false) {
             spinner.start("Running npm install.");
 
             exec(
-              `cd ${projectDirectory} && ${loadNvm} && npm install`
+              `cd ${projectDirectory} && ${
+                hasNvm ? `${loadNvm} &&` : ""
+              } npm install`
             ).then(
               () => {
                 spinner.succeed(`NPM modules installed.`);
