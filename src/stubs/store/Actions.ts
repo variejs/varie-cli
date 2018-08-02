@@ -7,7 +7,8 @@ import HttpServiceInterface from "varie/lib/http/HttpServiceInterface";
 const { lazyInject } = getDecorators($app.$container);
 
 export default class Actions {
-  @lazyInject("$http") private $http: HttpServiceInterface;
+  @lazyInject("$http")
+  private $http: HttpServiceInterface;
 
   sampleTest = (context: ActionContext<tempState, RootState>, data) => {};
 }

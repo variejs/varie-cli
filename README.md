@@ -1,25 +1,11 @@
-# varie-cli
+## Introduction
 
-A simple CLI for building Varie projects
+Varie CLI helps with the development of Varie applications.
 
-```bash
-$ npm install -g varie-cli
-```
+## Official Documentation
 
-### Usage
+Documentation for Varie CLI can be found on the [Varie website](https://varie.io/docs/latest/varie-cli).
 
-```bash
-$ varie new <project-name>
-```
+## License
 
-Example:
-
-```bash
-$ varie new my-project
-```
-
-The above command generates a brand new Varie project and is ready for development.
-
-### License
-
-[MIT](http://opensource.org/licenses/MIT)
+Varie CLI is open-sourced software licensed under the [MIT](http://opensource.org/licenses/MIT)
