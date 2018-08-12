@@ -1,7 +1,9 @@
 import { tempState } from "./stateInterface";
 
-export default class Getters {
-  SAMPLE_GETTER = (state: tempState) => {
-    return state;
+export default function() {
+  return {
+    SAMPLE_GETTER: (state: tempState) => {
+      return state;
+    }
   };
 }

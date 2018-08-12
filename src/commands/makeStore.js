@@ -6,7 +6,7 @@ const tellUserFolderExists = require("./../utilities/tellUserFolderExists");
 module.exports = function makeStore(storePath, force) {
   let splitStore = storePath.split("/");
   let storeName = splitStore.pop();
-  let fullPath = `./app/store/${storePath.split("/").join("/modules/")}`;
+  let fullPath = `./store/${storePath.split("/").join("/modules/")}`;
 
   tellUserFolderExists(fullPath, "store", force).then(valid => {
     if (valid) {
