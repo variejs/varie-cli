@@ -8,6 +8,7 @@ import { injectable, inject, unmanaged } from "inversify";
 @injectable()
 export default class Temp extends StoreModule {
   constructor(@inject("$http") $http) {
+    super();
     this.setName("temp")
       .addState(state)
       .addActions(actions($http))
