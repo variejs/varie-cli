@@ -6,7 +6,7 @@ import StoreModule from "varie/lib/state/StoreModule";
 import { injectable, inject, unmanaged } from "inversify";
 
 @injectable()
-export default class Temp extends StoreModule {
+export default class temp extends StoreModule {
   constructor(@inject("$http") $http) {
     super();
     this.setName("temp")
