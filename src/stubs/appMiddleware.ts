@@ -1,4 +1,8 @@
-export default class temp {
+import { injectable } from "inversify";
+import HttpMiddlewareInterface from "varie/lib/http/HttpMiddlewareInterface";
+
+@injectable()
+export default class temp implements HttpMiddlewareInterface {
   public request(config: object) {
     return config;
   }
