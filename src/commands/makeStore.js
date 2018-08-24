@@ -11,38 +11,21 @@ module.exports = function makeStore(storePath, force) {
   tellUserFolderExists(fullPath, "store", force).then(valid => {
     if (valid) {
       try {
+        storeName = toPascalCase(storeName);
+        fs.removeSync(fullPath);
         fs.copySync(`${__dirname}/../stubs/store`, fullPath);
+        fs.moveSync(`${fullPath}/index.ts`, `${fullPath}/${storeName}Store.ts`);
 
+        replaceTextInFile(`${fullPath}/actions.ts`, "temp", storeName);
+        replaceTextInFile(`${fullPath}/getters.ts`, "temp", storeName);
         replaceTextInFile(
-          `${fullPath}/actions.ts`,
+          `${fullPath}/${storeName}Store.ts`,
           "temp",
-          toPascalCase(storeName)
+          `${storeName}Store`
         );
-        replaceTextInFile(
-          `${fullPath}/getters.ts`,
-          "temp",
-          toPascalCase(storeName)
-        );
-        replaceTextInFile(
-          `${fullPath}/index.ts`,
-          "temp",
-          toPascalCase(storeName)
-        );
-        replaceTextInFile(
-          `${fullPath}/mutations.ts`,
-          "temp",
-          toPascalCase(storeName)
-        );
-        replaceTextInFile(
-          `${fullPath}/state.ts`,
-          "temp",
-          toPascalCase(storeName)
-        );
-        replaceTextInFile(
-          `${fullPath}/stateInterface.ts`,
-          "temp",
-          toPascalCase(storeName)
-        );
+        replaceTextInFile(`${fullPath}/mutations.ts`, "temp", storeName);
+        replaceTextInFile(`${fullPath}/state.ts`, "temp", storeName);
+        replaceTextInFile(`${fullPath}/stateInterface.ts`, "temp", storeName);
         console.info(`Store created: ${fullPath}`);
       } catch (err) {
         console.error(err);
