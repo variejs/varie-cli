@@ -9,7 +9,7 @@ module.exports = function makeValidator(modelName, force) {
     if (valid) {
       try {
         fs.copySync(`${__dirname}/../stubs/validator.ts`, path);
-        replaceTextInFile(path, "temp", toPascalCase(modelName));
+        replaceTextInFile(path, "temp", `${toPascalCase(modelName)}Validator`);
         console.info(`Validator created: ${path}`);
       } catch (err) {
         console.error(err);
