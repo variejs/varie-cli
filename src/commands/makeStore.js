@@ -14,15 +14,24 @@ module.exports = function makeStore(storePath, force) {
         storeName = toPascalCase(storeName);
         fs.removeSync(fullPath);
         fs.copySync(`${__dirname}/../stubs/store`, fullPath);
+
         fs.moveSync(`${fullPath}/index.ts`, `${fullPath}/${storeName}Store.ts`);
 
         replaceTextInFile(`${fullPath}/actions.ts`, "temp", storeName);
         replaceTextInFile(`${fullPath}/getters.ts`, "temp", storeName);
+
+        replaceTextInFile(
+          `${fullPath}/${storeName}Store.ts`,
+          "store_name",
+          `${storeName.toLowerCase()}`
+        );
+
         replaceTextInFile(
           `${fullPath}/${storeName}Store.ts`,
           "temp",
           `${storeName}Store`
         );
+
         replaceTextInFile(`${fullPath}/mutations.ts`, "temp", storeName);
         replaceTextInFile(`${fullPath}/state.ts`, "temp", storeName);
         replaceTextInFile(`${fullPath}/stateInterface.ts`, "temp", storeName);

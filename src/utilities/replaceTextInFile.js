@@ -1,18 +1,14 @@
 const fs = require("fs");
 
 function replaceTextInfile(filePath, stringToBeReplaced, replacement) {
-  fs.readFile(filePath, "utf8", function(err, data) {
+  let data = fs.readFileSync(filePath, "utf8");
+
+  let result = data.replace(new RegExp(stringToBeReplaced, "g"), replacement);
+
+  fs.writeFileSync(filePath, result, "utf8", function(err) {
     if (err) {
       return console.log(err);
     }
-
-    let result = data.replace(new RegExp(stringToBeReplaced, "g"), replacement);
-
-    fs.writeFile(filePath, result, "utf8", function(err) {
-      if (err) {
-        return console.log(err);
-      }
-    });
   });
 }
 
