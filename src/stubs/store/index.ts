@@ -11,7 +11,7 @@ export default class temp extends StoreModule {
     super();
     this.setName("store_name")
       .addState(state)
-      .addActions(actions(HttpService))
+      .addActions(actions(httpService))
       .addMutations(mutations)
       .addGetters(getters);
   }
