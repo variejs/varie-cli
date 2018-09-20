@@ -7,11 +7,11 @@ import { injectable, inject, unmanaged } from "inversify";
 
 @injectable()
 export default class temp extends StoreModule {
-  constructor(@inject("$http") $http) {
+  constructor(@inject("HttpService") httpService) {
     super();
     this.setName("store_name")
       .addState(state)
-      .addActions(actions($http))
+      .addActions(actions(HttpService))
       .addMutations(mutations)
       .addGetters(getters);
   }
