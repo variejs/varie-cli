@@ -13,7 +13,7 @@
   "author": "Luke Policinski <luke@lukepolo.com>",
   "license": "MIT",
   "dependencies": {
-    "camelcase": "^4.1.0",
+    "camelcase": "^5.0.0",
     "chalk": "^2.4.1",
     "colors": "^1.1.2",
     "commander": "^2.11.0",
