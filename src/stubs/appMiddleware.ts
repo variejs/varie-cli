@@ -13,6 +13,6 @@ export default class temp implements HttpMiddlewareInterface {
   }
 
   public responseError(error: AxiosError) {
-    return Promise.reject(error);
+    return error;
   }
 }
