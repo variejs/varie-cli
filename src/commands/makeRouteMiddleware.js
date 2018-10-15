@@ -9,7 +9,7 @@ module.exports = function makeRouteMiddleware(providerName, force) {
   tellUserFileExists(path, "provider", force).then(valid => {
     if (valid) {
       try {
-        fs.copySync(`${__dirname}/../stubs/routeMiddleware.ts`, path);
+        fs.copySync(`${process.env.varie_vendor_path}/stubs/routeMiddleware.ts`, path);
         replaceTextInFile(path, "temp", providerName);
         console.info(`Router Middleware created: ${path}`);
       } catch (err) {

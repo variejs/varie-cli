@@ -13,7 +13,7 @@ module.exports = function makeStore(storePath, force) {
       try {
         storeName = toPascalCase(storeName);
         fs.removeSync(fullPath);
-        fs.copySync(`${__dirname}/../stubs/store`, fullPath);
+        fs.copySync(`${process.env.varie_vendor_path}/stubs/store`, fullPath);
 
         fs.moveSync(`${fullPath}/index.ts`, `${fullPath}/${storeName}Store.ts`);
 

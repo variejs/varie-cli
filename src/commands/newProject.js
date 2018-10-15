@@ -6,7 +6,7 @@ const loadNvm =
   'export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && \\. "$NVM_DIR/nvm.sh" && nvm use ';
 
 module.exports = function makeProject(projectName, branch, force = false) {
-  let projectDirectory = `${process.cwd()}/${projectName}`;
+  let projectDirectory = `${process.env.varie_path}/${projectName}`;
 
   tellUserFolderExists(projectDirectory, "project folder", force).then(() => {
     let hasNvm = "";

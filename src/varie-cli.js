@@ -1,6 +1,17 @@
+const path = require('path');
 const program = require("commander");
 const commands = require("./commands");
 const Matcher = require("did-you-mean");
+
+const nodeModulesPath = require('find-node-modules')({relative: false });
+const packageJson = require(`${nodeModulesPath}/../package.json`);
+
+process.env.varie_path = process.cwd();
+process.env.varie_vendor_path = `${nodeModulesPath}/varie`;
+
+if(packageJson && packageJson.variePath) {
+  process.env.varie_path = path.join(`${nodeModulesPath}/../`, packageJson.variePath);
+}
 
 program
   .option("--force", "Forces a command")
