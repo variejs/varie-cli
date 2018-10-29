@@ -1,8 +1,8 @@
 const path = require('path');
+const inquirer = require('inquirer');
 const program = require("commander");
 const commands = require("./commands");
 const Matcher = require("did-you-mean");
-
 const nodeModulesPath = require('find-node-modules')({relative: false });
 const packageJson = require(`${nodeModulesPath}/../package.json`);
 
@@ -115,24 +115,44 @@ function isPublishable(package) {
 program
   .command("publish")
   .description("Publishes plugins configs and assets")
-  .action(function() {
-    let publishable = [];
+  .action(function(package) {
+    if(typeof package !== 'string') {
+      let publishable = [];
 
-    for(let package in packageJson.dependencies) {
-      if(isPublishable(package)) {
-        publishable.push(package)
+      for(let package in packageJson.dependencies) {
+        if(isPublishable(package)) {
+          publishable.push(package)
+        }
+      }
+
+      for(let package in packageJson.devDependencies) {
+        if(isPublishable(package)) {
+          publishable.push(package)
+        }
+      }
+      inquirer
+        .prompt([
+          {
+            name : 'publish',
+            message : 'Which plugins do you wish to publish its assets (this will overwrite any files)',
+            type : 'checkbox',
+            choices : publishable
+          }
+        ])
+        .then((answers) => {
+          commands.publish(answers.publish);
+        })
+    } else {
+      try {
+        if(isPublishable(package)) {
+          return commands.publish([package]);
+        }
+        console.error("This package is not publishable");
+      } catch (error) {
+        console.error(`We could not find ${package}`);
       }
     }
-
-    for(let package in packageJson.devDependencies) {
-      if(isPublishable(package)) {
-        publishable.push(package)
-      }
-    }
-
-    commands.publish(publishable);
   });
-
 
 program.command("*").action(function(command) {
   let matcher = new Matcher();
