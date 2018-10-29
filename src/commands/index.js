@@ -1,3 +1,4 @@
+const publish = require("./publish");
 const makeRule = require("./makeRule");
 const makeMixin = require("./makeMixin");
 const makeModel = require("./makeModel");
@@ -12,6 +13,7 @@ const makeAppMiddleware = require("./makeAppMiddleware");
 const makeRouteMiddleware = require("./makeRouteMiddleware");
 
 module.exports = {
+  publish,
   makeRule,
   makeMixin,
   makeModel,
@@ -23,5 +25,5 @@ module.exports = {
   makeDirective,
   makeValidator,
   makeAppMiddleware,
-  makeRouteMiddleware
+  makeRouteMiddleware,
 };

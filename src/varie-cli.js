@@ -8,6 +8,7 @@ const packageJson = require(`${nodeModulesPath}/../package.json`);
 
 process.env.varie_path = process.cwd();
 process.env.varie_vendor_path = `${nodeModulesPath}/varie`;
+process.env.node_modules_path = nodeModulesPath;
 
 if(packageJson && packageJson.variePath) {
   process.env.varie_path = path.join(`${nodeModulesPath}/../`, packageJson.variePath);
@@ -105,6 +106,34 @@ program
     commands.makeValidator(validatorName, program.force);
   });
 
+
+function isPublishable(package) {
+  let packageJson = require(`${process.env.node_modules_path}/${package}/package.json`)
+  return packageJson && packageJson.variePublishable && packageJson.name;
+}
+
+program
+  .command("publish")
+  .description("Publishes plugins configs and assets")
+  .action(function() {
+    let publishable = [];
+
+    for(let package in packageJson.dependencies) {
+      if(isPublishable(package)) {
+        publishable.push(package)
+      }
+    }
+
+    for(let package in packageJson.devDependencies) {
+      if(isPublishable(package)) {
+        publishable.push(package)
+      }
+    }
+
+    commands.publish(publishable);
+  });
+
+
 program.command("*").action(function(command) {
   let matcher = new Matcher();
   matcher.setThreshold(4);
@@ -121,6 +150,7 @@ program.command("*").action(function(command) {
       "make:route-middleware",
       "make:rule",
       "make:validator",
+      "publish",
       "new"
     );
   }
