@@ -4,7 +4,13 @@ const program = require("commander");
 const commands = require("./commands");
 const Matcher = require("did-you-mean");
 const nodeModulesPath = require('find-node-modules')({relative: false });
-const packageJson = require(`${nodeModulesPath}/../package.json`);
+
+try {
+  const packageJson = require(`${nodeModulesPath}/../package.json`);
+} catch(error) {
+  // do nothing
+}
+
 
 process.env.varie_path = process.cwd();
 process.env.varie_vendor_path = `${nodeModulesPath}/varie`;
