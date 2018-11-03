@@ -5,12 +5,12 @@ const commands = require("./commands");
 const Matcher = require("did-you-mean");
 const nodeModulesPath = require('find-node-modules')({relative: false });
 
+let packageJson = null;
 try {
-  const packageJson = require(`${nodeModulesPath}/../package.json`);
+  packageJson = require(`${nodeModulesPath}/../package.json`);
 } catch(error) {
   // do nothing
 }
-
 
 process.env.varie_path = process.cwd();
 process.env.varie_vendor_path = `${nodeModulesPath}/varie`;
