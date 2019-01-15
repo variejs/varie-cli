@@ -3,7 +3,7 @@ const inquirer = require('inquirer');
 const program = require("commander");
 const commands = require("./commands");
 const Matcher = require("did-you-mean");
-const nodeModulesPath = require('find-node-modules')({relative: false });
+const nodeModulesPath = require('./utilities/findNodeModules')();
 
 let packageJson = null;
 try {

@@ -1,6 +1,6 @@
 {
   "name": "varie-cli",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "A CLI for scaffolding Varie projects.",
   "preferGlobal": true,
   "bin": {
@@ -14,14 +14,14 @@
   "license": "MIT",
   "dependencies": {
     "camelcase": "^5.0.0",
-    "chalk": "^2.4.1",
-    "colors": "^1.3.2",
+    "chalk": "^2.4.2",
+    "colors": "^1.3.3",
     "commander": "^2.18.0",
     "did-you-mean": "^0.0.1",
     "download-git-repo": "^1.1.0",
-    "find-node-modules": "^1.0.4",
-    "fs-extra": "^7.0.0",
-    "inquirer": "^6.2.0",
+    "findup-sync": "^3.0.0",
+    "fs-extra": "^7.0.1",
+    "inquirer": "^6.2.1",
     "install": "^0.12.1",
     "ora": "^3.0.0",
     "snake-case": "^2.1.0",
