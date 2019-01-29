@@ -1,6 +1,6 @@
 {
   "name": "varie-cli",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "description": "A CLI for scaffolding Varie projects.",
   "preferGlobal": true,
   "bin": {
@@ -28,6 +28,9 @@
     "to-pascal-case": "^1.0.0",
     "util.promisify": "^1.0.0"
   },
+  "files": [
+    "src"
+  ],
   "engines": {
     "node": ">=6.0.0"
   }
