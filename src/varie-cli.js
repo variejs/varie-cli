@@ -35,7 +35,7 @@ program
 
 program
   .command("make:component")
-  .description("Creates a Vue directive in the component directory")
+  .description("Creates a Vue component in the component directory")
   .action(function(componentName) {
     commands.makeComponent(componentName, program.force);
   });
