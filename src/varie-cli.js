@@ -1,14 +1,14 @@
-const path = require('path');
-const inquirer = require('inquirer');
+const path = require("path");
+const inquirer = require("inquirer");
 const program = require("commander");
 const commands = require("./commands");
 const Matcher = require("did-you-mean");
-const nodeModulesPath = require('./utilities/findNodeModules')();
+const nodeModulesPath = require("./utilities/findNodeModules")();
 
 let packageJson = null;
 try {
   packageJson = require(`${nodeModulesPath}/../package.json`);
-} catch(error) {
+} catch (error) {
   // do nothing
 }
 
@@ -16,8 +16,11 @@ process.env.varie_path = process.cwd();
 process.env.varie_vendor_path = `${nodeModulesPath}/varie`;
 process.env.node_modules_path = nodeModulesPath;
 
-if(packageJson && packageJson.variePath) {
-  process.env.varie_path = path.join(`${nodeModulesPath}/../`, packageJson.variePath);
+if (packageJson && packageJson.variePath) {
+  process.env.varie_path = path.join(
+    `${nodeModulesPath}/../`,
+    packageJson.variePath,
+  );
 }
 
 program
@@ -78,7 +81,7 @@ program
 program
   .command("make:store")
   .description(
-    "Creates a Vuex store / submodule in the store directory based on the path provided"
+    "Creates a Vuex store / submodule in the store directory based on the path provided",
   )
   .action(function(storeName) {
     commands.makeStore(storeName, program.force);
@@ -112,9 +115,10 @@ program
     commands.makeValidator(validatorName, program.force);
   });
 
-
 function isPublishable(package) {
-  let packageJson = require(`${process.env.node_modules_path}/${package}/package.json`)
+  let packageJson = require(`${
+    process.env.node_modules_path
+  }/${package}/package.json`);
   return packageJson && packageJson.variePublishable && packageJson.name;
 }
 
@@ -122,35 +126,36 @@ program
   .command("publish")
   .description("Publishes plugins configs and assets")
   .action(function(package) {
-    if(typeof package !== 'string') {
+    if (typeof package !== "string") {
       let publishable = [];
 
-      for(let package in packageJson.dependencies) {
-        if(isPublishable(package)) {
-          publishable.push(package)
+      for (let package in packageJson.dependencies) {
+        if (isPublishable(package)) {
+          publishable.push(package);
         }
       }
 
-      for(let package in packageJson.devDependencies) {
-        if(isPublishable(package)) {
-          publishable.push(package)
+      for (let package in packageJson.devDependencies) {
+        if (isPublishable(package)) {
+          publishable.push(package);
         }
       }
       inquirer
         .prompt([
           {
-            name : 'publish',
-            message : 'Which plugins do you wish to publish its assets (this will overwrite any files)',
-            type : 'checkbox',
-            choices : publishable
-          }
+            name: "publish",
+            message:
+              "Which plugins do you wish to publish its assets (this will overwrite any files)",
+            type: "checkbox",
+            choices: publishable,
+          },
         ])
         .then((answers) => {
           commands.publish(answers.publish);
-        })
+        });
     } else {
       try {
-        if(isPublishable(package)) {
+        if (isPublishable(package)) {
           return commands.publish([package]);
         }
         console.error("This package is not publishable");
@@ -177,7 +182,7 @@ program.command("*").action(function(command) {
       "make:rule",
       "make:validator",
       "publish",
-      "new"
+      "new",
     );
   }
 
@@ -185,7 +190,7 @@ program.command("*").action(function(command) {
   if (matches.length) {
     console.error(`Did you mean one of these?`);
     console.error("");
-    matches.forEach(match => {
+    matches.forEach((match) => {
       console.error(match.value);
     });
     console.error("");

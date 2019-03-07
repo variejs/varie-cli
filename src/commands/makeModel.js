@@ -5,7 +5,7 @@ const tellUserFileExists = require("./../utilities/tellUserFileExists");
 
 module.exports = function makeModel(modelName, force) {
   let path = `${process.env.varie_path}/app/models/${modelName}Model.ts`;
-  tellUserFileExists(path, "model", force).then(valid => {
+  tellUserFileExists(path, "model", force).then((valid) => {
     if (valid) {
       try {
         fs.copySync(`${process.env.varie_vendor_path}/stubs/model.ts`, path);

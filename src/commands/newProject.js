@@ -29,7 +29,7 @@ module.exports = function makeProject(projectName, branch, force = false) {
             exec(
               `cd ${projectDirectory} && ${
                 hasNvm ? `${loadNvm} &&` : ""
-              } npm install`
+              } npm install`,
             ).then(
               () => {
                 spinner.succeed(`NPM modules installed.`);
@@ -37,27 +37,27 @@ module.exports = function makeProject(projectName, branch, force = false) {
                 exec(
                   `cd ${projectDirectory} && ${
                     hasNvm ? `${loadNvm} &&` : ""
-                  } npm run dev`
+                  } npm run dev`,
                 ).then(
                   () => {
                     spinner.succeed("Project Built, and ready to develop!");
                   },
-                  err => {
+                  (err) => {
                     spinner.fail(err);
-                  }
+                  },
                 );
               },
-              err => {
+              (err) => {
                 spinner.fail(err);
-              }
+              },
             );
           }
-        }
+        },
       );
     };
 
     exec(`${loadNvm} command -v nvm`)
-      .then(result => {
+      .then((result) => {
         if (result.trim() === "nvm") {
           hasNvm = `${loadNvm}`;
         }

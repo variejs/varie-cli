@@ -6,9 +6,11 @@ const tellUserFolderExists = require("./../utilities/tellUserFolderExists");
 module.exports = function makeStore(storePath, force) {
   let splitStore = storePath.split("/");
   let storeName = splitStore.pop();
-  let fullPath = `./store/${storePath.split("/").join("/modules/")}`;
+  let fullPath = `${process.env.varie_path}/store/${storePath
+    .split("/")
+    .join("/modules/")}`;
 
-  tellUserFolderExists(fullPath, "store", force).then(valid => {
+  tellUserFolderExists(fullPath, "store", force).then((valid) => {
     if (valid) {
       try {
         storeName = toPascalCase(storeName);
@@ -23,13 +25,13 @@ module.exports = function makeStore(storePath, force) {
         replaceTextInFile(
           `${fullPath}/${storeName}Store.ts`,
           "store_name",
-          `${storeName.toLowerCase()}`
+          `${storeName.toLowerCase()}`,
         );
 
         replaceTextInFile(
           `${fullPath}/${storeName}Store.ts`,
           "temp",
-          `${storeName}Store`
+          `${storeName}Store`,
         );
 
         replaceTextInFile(`${fullPath}/mutations.ts`, "temp", storeName);

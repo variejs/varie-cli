@@ -2,7 +2,7 @@ const chalk = require("chalk");
 const fs = require("fs-extra");
 
 function tellUserFileExists(path, type = "file", force) {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     if (force) {
       return resolve(true);
     }
@@ -10,8 +10,8 @@ function tellUserFileExists(path, type = "file", force) {
       if (exists) {
         console.log(
           chalk.red(
-            `This ${type} already exists. You can use --force to overwrite`
-          )
+            `This ${type} already exists. You can use --force to overwrite`,
+          ),
         );
         resolve(false);
       }

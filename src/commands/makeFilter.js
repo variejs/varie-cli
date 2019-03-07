@@ -5,7 +5,7 @@ const tellUserFileExists = require("./../utilities/tellUserFileExists");
 
 module.exports = function makeFilter(filterName, force) {
   let path = `${process.env.varie_path}/app/filters/${filterName}.ts`;
-  tellUserFileExists(path, "filter", force).then(valid => {
+  tellUserFileExists(path, "filter", force).then((valid) => {
     if (valid) {
       try {
         fs.copySync(`${process.env.varie_vendor_path}/stubs/filter.ts`, path);

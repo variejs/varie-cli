@@ -4,8 +4,10 @@ const replaceTextInFile = require("./../utilities/replaceTextInFile");
 const tellUserFileExists = require("./../utilities/tellUserFileExists");
 
 module.exports = function makeProvider(providerName, force) {
-  let path = `${process.env.varie_path}/app/providers/${providerName}Provider.ts`;
-  tellUserFileExists(path, "provider", force).then(valid => {
+  let path = `${
+    process.env.varie_path
+  }/app/providers/${providerName}Provider.ts`;
+  tellUserFileExists(path, "provider", force).then((valid) => {
     if (valid) {
       try {
         fs.copySync(`${process.env.varie_vendor_path}/stubs/provider.ts`, path);
