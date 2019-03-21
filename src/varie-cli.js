@@ -88,6 +88,15 @@ program
   });
 
 program
+  .command("make:service")
+  .description(
+    "Creates a Service in the app/services directory based on the path provided",
+  )
+  .action(function(storeName) {
+    commands.makeService(storeName, program.force);
+  });
+
+program
   .command("make:app-middleware")
   .description("Creates a new app middleware")
   .action(function(appMiddlewareName) {

@@ -5,6 +5,7 @@ const makeModel = require("./makeModel");
 const makeStore = require("./makeStore");
 const makeFilter = require("./makeFilter");
 const newProject = require("./newProject");
+const makeService = require("./makeService");
 const makeProvider = require("./makeProvider");
 const makeComponent = require("./makeComponent");
 const makeDirective = require("./makeDirective");
@@ -20,6 +21,7 @@ module.exports = {
   makeStore,
   makeFilter,
   newProject,
+  makeService,
   makeProvider,
   makeComponent,
   makeDirective,
