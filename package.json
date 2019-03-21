@@ -24,6 +24,7 @@
     "inquirer": "^6.2.2",
     "install": "^0.12.1",
     "ora": "^3.2.0",
+    "param-case": "^2.1.1",
     "snake-case": "^2.1.0",
     "to-pascal-case": "^1.0.0",
     "util.promisify": "^1.0.0"

@@ -1,19 +1,22 @@
 const fs = require("fs-extra");
+const paramCase = require("param-case");
 const toPascalCase = require("to-pascal-case");
 const replaceTextInFile = require("./../utilities/replaceTextInFile");
 const tellUserFolderExists = require("./../utilities/tellUserFolderExists");
 
 module.exports = function makeStore(storePath, force) {
-  let splitStore = storePath.split("/");
-  let storeName = splitStore.pop();
   let fullPath = `${process.env.varie_path}/store/${storePath
     .split("/")
+    .map((part) => {
+      return paramCase(part);
+    })
     .join("/modules/")}`;
 
   tellUserFolderExists(fullPath, "store", force).then((valid) => {
     if (valid) {
       try {
-        storeName = toPascalCase(storeName);
+        let storeName = toPascalCase(storePath);
+
         fs.removeSync(fullPath);
         fs.copySync(`${process.env.varie_vendor_path}/stubs/store`, fullPath);
 
@@ -25,7 +28,7 @@ module.exports = function makeStore(storePath, force) {
         replaceTextInFile(
           `${fullPath}/${storeName}Store.ts`,
           "store_name",
-          `${storeName.toLowerCase()}`,
+          `${paramCase(storePath.split("/").pop())}`,
         );
 
         replaceTextInFile(

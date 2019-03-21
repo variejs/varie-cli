@@ -203,7 +203,6 @@ program.command("*").action(function(command) {
       console.error(match.value);
     });
     console.error("");
-    return;
   }
 });
 
